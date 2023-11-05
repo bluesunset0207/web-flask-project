@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+</head>
+<body>
+    <h1>게시판</h1>
+    {% if username %}
+        <h2>{{username}}</h2>
+        <a href="/logout" style="text-shadow: 2px 2px black;"><font color="white" size=6><strong>LOGOUT</strong></font></a>
+    {% else %}
+        <a href="/login" style="text-shadow: 2px 2px black;"><font color="white" size=6><strong>SIGN IN&nbsp;</strong></font></a> <font color="white" size=6>&middot;&nbsp;</font>
+		<a href="/signup" style="text-shadow: 2px 2px black;"><font color="white" size=6><strong>SIGN UP</strong></font></a>
+    {% endif %}
+
+    <a href="{{ url_for('board') }}">게시판</a>
+</body>
+</html>
