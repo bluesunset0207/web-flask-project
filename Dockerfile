@@ -1,11 +1,9 @@
-FROM node:18
+FROM python:3.12
 
-WORKDIR /usr/src/app
-COPY package*.json ./
+COPY . /app
 
-RUN npm install -g npm
+RUN pip3 install flask 
 
-COPY . . 
+WORKDIR /app
 
-EXPOSE 3000 
-CMD [ "node", "app.js" ]
+CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
