@@ -4,6 +4,7 @@ import re
 from werkzeug.utils import secure_filename
 import os
 from flask import send_from_directory
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
@@ -11,10 +12,27 @@ UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'pptx', 'hwp', 'hwpx', 'docx'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://blue:vkfksshdmf0207@db/flasksql'  # DB 접속 정보
+db = SQLAlchemy(app)
+class Posts(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    filename = db.Column(db.String(255), nullable=True)
+
+class Users(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    password = db.Column(db.String(64), nullable=False)
+    email = db.Column(db.String(50), unique=True, nullable=False)
+
+with app.app_context():
+    db.create_all()
+
 app.secret_key = 'sample_secret'
 
 def connectsql():
-    conn = pymysql.connect(host='db', user = 'root', passwd = 'vkfksshdmf0207', db = 'flasksql', charset='utf8')
+    conn = pymysql.connect(host='mysql_db', port=3306, user = 'root', passwd = 'vkfksshdmf0207', db = 'flasksql', charset='utf8')
     return conn
 
 @app.route('/')
