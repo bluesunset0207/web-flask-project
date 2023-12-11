@@ -14,7 +14,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = 'sample_secret'
 
 def connectsql():
-    conn = pymysql.connect(host='localhost', user = 'root', passwd = 'vkfksshdmf0207', db = 'flasksql', charset='utf8')
+    conn = pymysql.connect(host='db', user = 'root', passwd = 'vkfksshdmf0207', db = 'flasksql', charset='utf8')
     return conn
 
 @app.route('/')
