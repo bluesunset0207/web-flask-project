@@ -32,7 +32,7 @@ with app.app_context():
 app.secret_key = 'sample_secret'
 
 def connectsql():
-    conn = pymysql.connect(host='mysql_db', port=3306, user = 'root', passwd = 'vkfksshdmf0207', db = 'flasksql', charset='utf8')
+    conn = pymysql.connect(host='db', port=3306, user = 'root', passwd = 'vkfksshdmf0207', db = 'flasksql', charset='utf8')
     return conn
 
 @app.route('/')

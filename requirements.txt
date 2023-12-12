@@ -1,2 +1,6 @@
 Flask
 pymysql
+Flask-SQLAlchemy
+SQLAlchemy
+mysqlclient
+Flask-Migrate
